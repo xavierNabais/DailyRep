@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+
+/* Estilo geral */
+body {
+  margin: 0;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.list-item-spacing {
+  border: 0 !important; /* Remove todas as bordas */
+  margin-bottom: 0 !important; /* Remove a margem inferior existente */
+  padding: 20px !important; /* Adiciona um espaçamento interno uniforme */
+  font-size: 22px;
+}
+
+.list-item-spacing + .list-item-spacing {
+  margin-top: 20px !important; /* Ajusta o espaçamento entre os itens */
+}
+
+.list-item-spacing:last-child {
+  border-bottom: 0 !important; /* Remove a borda inferior do último item */
+  margin-bottom: 0 !important; /* Garante que o último item não tenha margem extra inferior */
+}
+
+.list-item-spacing:hover{
+  background-color: #4b5966!important;
+}
+
+a{
+  text-decoration: none!important;
+}
+
+
+/* Remove o efeito de ripple */
+.btn .ripple-wave {
+  display: none !important;
+}
+
+
+
+
+.cascading-right {
+  margin-right: -50px;
+}
+
+@media (max-width: 900px) {
+  .cascading-right {
+    margin-right: 0;
+  }
+}
+
+/* Estilo do avatar do usuário */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Margem do contêiner de comentários */
+.comment-container {
+  margin-top: 10px;
+}
+
+/* Estilizar a data e nome do usuário */
+.comment-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-username {
+  font-weight: bold;
+}
+
+.comment-date {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.comment-container {
+  position: relative; /* Necessário para posicionar o ícone dentro do container */
+}
+
+.comment-container .delete-icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+.dark-mode .card{
+  background-color: transparent!important;
+  box-shadow: 1px 2px 24px 0px rgb(41, 41, 41)!important;
+}
+
+.trash{
+  color:rgb(55, 164, 194)!important;
+}
+
+.dark-mode .workout-button.active {
+  background-color:rgb(55, 164, 194)!important;
+}
+
+/* Variáveis de cor para o modo escuro */
+:root {
+  --dark-background: #15202b; /* Fundo principal */
+  --dark-border: #22303c; /* Cor da borda dos cartões */
+  --dark-text: #ffffff; /* Cor do texto */
+  --dark-text-muted: #8899a6; /* Cor do texto secundário */
+}
+
+body.dark-mode {
+  background-color: var(--dark-background);
+  color: var(--dark-text);
+}
+
+body.dark-mode .card, 
+body.dark-mode .mb-4, 
+body.dark-mode .shadow-sm {
+  border-bottom: 2px solid var(--dark-border);
+  color: var(--dark-text);
+}
+
+
+body.dark-mode .btn, 
+body.dark-mode .btn-danger, 
+body.dark-mode .btn-primary, 
+body.dark-mode .btn-link {
+  background-color: var(--dark-border)!important;
+  color: var(--dark-text);
+  border: none;
+  padding:10px 20px;
+}
+
+body.dark-mode .btn:hover, 
+body.dark-mode .btn-danger:hover, 
+body.dark-mode .btn-primary:hover, 
+body.dark-mode .btn-link:hover {
+  background-color:rgb(55, 164, 194)!important;
+  color:white!important;
+  ;
+}
+
+body.dark-mode .form-control {
+  background-color: var(--dark-card-background);
+  color: var(--dark-text);
+  border: 1px solid var(--dark-border);
+}
+
+body.dark-mode .form-control::placeholder {
+  color: var(--dark-text-muted);
+}
+
+body.dark-mode .text-muted {
+  color: var(--dark-text-muted) !important;
+}
+
+body.dark-mode .comment-username {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .list-group-item {
+  background-color: var(--dark-card-background);
+  color: var(--dark-text);
+  border: 1px solid var(--dark-border);
+}
+
+body.dark-mode .list-group-item:hover {
+  background-color: var(--dark-border);
+}
+
+body.dark-mode .card-body {
+  color: var(--dark-text);
+}
+
+body.dark-mode .btn:focus, 
+body.dark-mode .btn-primary:focus, 
+body.dark-mode .btn-link:focus {
+  box-shadow: none;
+}
+
+
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background: #fccb90;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+@media (min-width: 768px) {
+  .gradient-form {
+    height: 100vh !important;
+  }
+}
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+  }
+}
