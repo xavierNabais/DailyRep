@@ -1,121 +1,111 @@
-# DailyRep
-
-![Logo](https://via.placeholder.com/150)
+# 📅 **DailyRep**
 
 **[English Version](#english-version)** | **[Versão Portuguesa](#versão-portuguesa)**
 
----
-
-## English Version
-
-Welcome to **DailyRep**! 🎉 A personal project that demonstrates my skills in both frontend and backend development. **DailyRep** is a social platform designed for fitness enthusiasts to log their daily workouts, connect with others, and interact through likes and comments.
-
-### Table of Contents
-
-- [Features](#features)
-  - [Frontend](#frontend)
-  - [Backend](#backend)
-- [Technologies Used](#technologies-used)
-  - [Frontend Technologies](#frontend-technologies)
-  - [Backend Technologies](#backend-technologies)
-
-### Features
-
-#### Frontend
-
-1. **User Authentication**: Secure login and registration using JWT tokens.
-2. **Dark Mode**: Toggle between light and dark modes for improved user experience.
-3. **Profile Management**: View profiles, including followers and following lists.
-4. **Workout Feed**: Dynamic feed displaying users' workouts, filterable by search queries.
-5. **Add Workout**: Add new workout entries with comments and status (done or missed).
-6. **Interactivity**: Like and comment on workouts with real-time updates.
-7. **Follow/Unfollow**: Follow and unfollow users to customize the workout feed.
-8. **Responsive Design**: Works well on both desktop and mobile devices.
-
-#### Backend
-
-1. **API Development**: RESTful API endpoints for user authentication, workout management, likes, comments, and follow functionality.
-2. **Database Management**: MongoDB for data storage, with Mongoose for schema definitions and data modeling.
-3. **Security**: Secure authentication and authorization using JWT tokens.
-4. **Data Fetching**: Efficient handling of data relationships between users, workouts, comments, and likes.
-5. **Error Handling**: Robust error handling and validation to ensure a smooth user experience.
-6. **Architecture**: Utilizes Model, Controller, and Middleware to structure the backend.
-
-### Technologies Used
-
-#### Frontend Technologies
-
-- **React**: For building the user interface.
-- **MDBReact**: For UI components and styling.
-- **React Router**: For navigation and routing.
-- **Axios**: For making HTTP requests to the backend.
-- **LocalStorage**: For storing user authentication tokens and dark mode preference.
-
-#### Backend Technologies
-
-- **Node.js**: For server-side development.
-- **Express.js**: For building the RESTful API.
-- **MongoDB**: For the database.
-- **Mongoose**: For object data modeling (ODM).
-- **JWT**: For authentication and authorization.
-- **Bcrypt**: For password hashing.
-- **CORS**: For handling Cross-Origin Resource Sharing.
-- **dotenv**: For managing environment variables.
+![Logo](https://via.placeholder.com/150)
 
 ---
 
-## Versão Portuguesa
+## 🌟 **Sobre o Projeto**
 
-Bem-vindo ao **DailyRep**! 🎉 Um projeto pessoal que demonstra minhas habilidades tanto no desenvolvimento frontend quanto backend. **DailyRep** é uma plataforma social para entusiastas do fitness registrarem seus treinos diários, se conectarem com outros usuários e interagirem através de curtidas e comentários.
+**DailyRep** é uma plataforma social para entusiastas do fitness, permitindo que os usuários registrem seus treinos diários, sigam outros usuários e interajam através de curtidas e comentários.
 
-### Índice
+---
 
-- [Funcionalidades](#funcionalidades)
-  - [Frontend](#frontend)
-  - [Backend](#backend)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-  - [Tecnologias de Frontend](#tecnologias-de-frontend)
-  - [Tecnologias de Backend](#tecnologias-de-backend)
+## 🚀 **Funcionalidades**
 
-### Funcionalidades
+### **Frontend**
 
-#### Frontend
+- **🔒 Autenticação de Usuário:** Login e registro seguro com JWT.
+- **🌙 Modo Escuro:** Alternar entre modos claro e escuro.
+- **👤 Gestão de Perfil:** Visualização e gerenciamento de perfil.
+- **📜 Feed de Treinos:** Feed dinâmico com filtragem de treinos.
+- **➕ Adicionar Treino:** Adicionar treinos com comentários e status.
+- **❤️ Interatividade:** Curtir e comentar treinos com atualizações em tempo real.
+- **🔄 Seguir/Deixar de Seguir:** Seguir e deixar de seguir usuários.
+- **📱 Design Responsivo:** Compatível com desktop e dispositivos móveis.
 
-1. **Autenticação de Usuário**: Login e registro seguro usando tokens JWT.
-2. **Modo Escuro**: Alternar entre modos claro e escuro para uma melhor experiência.
-3. **Gestão de Perfil**: Visualizar perfis, incluindo listas de seguidores e seguidos.
-4. **Feed de Treinos**: Feed dinâmico exibindo treinos dos usuários, filtrável por consultas de busca.
-5. **Adicionar Treino**: Adicionar novas entradas de treino com comentários e status (feito ou perdido).
-6. **Interatividade**: Curtir e comentar treinos com atualizações em tempo real.
-7. **Seguir/Deixar de Seguir**: Seguir e deixar de seguir usuários para personalizar o feed de treinos.
-8. **Design Responsivo**: Funciona bem em dispositivos desktop e móveis.
+### **Backend**
 
-#### Backend
+- **🔗 API RESTful:** Endpoints para autenticação, gerenciamento de treinos, curtidas e comentários.
+- **🗃️ Gerenciamento de Banco de Dados:** MongoDB e Mongoose para armazenamento e modelagem.
+- **🔒 Segurança:** Autenticação e autorização com JWT.
+- **⚡ Busca de Dados:** Manipulação eficiente e gerenciamento de relacionamentos.
+- **🚧 Tratamento de Erros:** Validação e tratamento robusto de erros.
 
-1. **Desenvolvimento de API**: Endpoints de API RESTful para autenticação de usuários, gestão de treinos, curtidas, comentários e funcionalidade de seguir.
-2. **Gestão de Banco de Dados**: MongoDB para armazenamento de dados, com Mongoose para definições de esquema e modelagem de dados.
-3. **Segurança**: Autenticação e autorização seguras usando tokens JWT.
-4. **Busca de Dados**: Manipulação eficiente de dados e gerenciamento de relacionamentos entre usuários, treinos, comentários e curtidas.
-5. **Tratamento de Erros**: Tratamento robusto de erros e validação para garantir uma experiência de usuário suave.
-6. **Arquitetura**: Utiliza Model, Controller e Middleware para estruturar o backend.
+---
 
-### Tecnologias Utilizadas
+## 🛠️ **Tecnologias Utilizadas**
 
-#### Tecnologias de Frontend
+### **Frontend**
 
-- **React**: Para construção da interface do usuário.
-- **MDBReact**: Para componentes de UI e estilização.
-- **React Router**: Para navegação e roteamento.
-- **Axios**: Para fazer requisições HTTP ao backend.
-- **LocalStorage**: Para armazenamento de tokens de autenticação e preferência de modo escuro.
+- **React**: Construção da interface do usuário.
+- **MDBReact**: Componentes e estilização.
+- **React Router**: Navegação e roteamento.
+- **Axios**: Requisições HTTP.
+- **LocalStorage**: Armazenamento de tokens e preferências.
 
-#### Tecnologias de Backend
+### **Backend**
 
-- **Node.js**: Para desenvolvimento do lado do servidor.
-- **Express.js**: Para construção da API RESTful.
-- **MongoDB**: Para o banco de dados.
-- **Mongoose**: Para modelagem de dados de objetos (ODM).
-- **JWT**: Para autenticação e autorização.
-- **Bcrypt**: Para hashing de senhas.
-- **CORS**: Para lidar com Cross-Origin Resource Sharing.
-- **dotenv**: Para gerenciamento de variáveis de ambiente.
+- **Node.js**: Desenvolvimento do servidor.
+- **Express.js**: Construção da API RESTful.
+- **MongoDB**: Armazenamento de dados.
+- **Mongoose**: Modelagem de dados.
+- **JWT**: Autenticação e autorização.
+- **Bcrypt**: Hashing de senhas.
+- **CORS**: Controle de compartilhamento entre origens.
+- **dotenv**: Gerenciamento de variáveis de ambiente.
+
+---
+
+## 🌟 **Project Overview**
+
+**DailyRep** is a social platform for fitness enthusiasts to log their daily workouts, follow other users, and interact through likes and comments.
+
+---
+
+## 🚀 **Features**
+
+### **Frontend**
+
+- **🔒 User Authentication:** Secure login and registration with JWT.
+- **🌙 Dark Mode:** Toggle between light and dark modes.
+- **👤 Profile Management:** View and manage user profiles.
+- **📜 Workout Feed:** Dynamic feed with workout filtering.
+- **➕ Add Workout:** Add new workouts with comments and status.
+- **❤️ Interactivity:** Like and comment on workouts with real-time updates.
+- **🔄 Follow/Unfollow:** Follow and unfollow other users.
+- **📱 Responsive Design:** Compatible with desktop and mobile devices.
+
+### **Backend**
+
+- **🔗 RESTful API:** Endpoints for authentication, workout management, likes, and comments.
+- **🗃️ Database Management:** MongoDB and Mongoose for storage and modeling.
+- **🔒 Security:** Authentication and authorization with JWT.
+- **⚡ Data Fetching:** Efficient data handling and relationship management.
+- **🚧 Error Handling:** Robust error handling and validation.
+
+---
+
+## 🛠️ **Technologies Used**
+
+### **Frontend**
+
+- **React**: Building the user interface.
+- **MDBReact**: UI components and styling.
+- **React Router**: Navigation and routing.
+- **Axios**: HTTP requests.
+- **LocalStorage**: Storing tokens and preferences.
+
+### **Backend**
+
+- **Node.js**: Server-side development.
+- **Express.js**: Building the RESTful API.
+- **MongoDB**: Data storage.
+- **Mongoose**: Data modeling.
+- **JWT**: Authentication and authorization.
+- **Bcrypt**: Password hashing.
+- **CORS**: Handling Cross-Origin Resource Sharing.
+- **dotenv**: Managing environment variables.
+
+---
