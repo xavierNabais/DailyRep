@@ -5,7 +5,8 @@ const User = require('../models/User');
 // Add a new comment
 exports.addComment = async (req, res) => {
   try {
-    console.log('teste');
+
+    console.log(req.body);
     const { userId, bookingId, comment } = req.body; // Ensure "userId" is included
 
     // Check if the booking exists

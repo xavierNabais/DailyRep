@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 
+
 /* Estilo geral */
 body {
   margin: 0;
@@ -220,4 +221,59 @@ body.dark-mode .btn-link:focus {
     border-top-right-radius: .3rem;
     border-bottom-right-radius: .3rem;
   }
+}
+
+
+
+
+body.light-mode{
+  background-color: #DBE8E5;
+}
+
+.light-mode .workout-button{
+  background-color: transparent;
+  color: black;
+  border: 1px solid #37A4C2;
+}
+.light-mode .workout-button:hover{
+  background-color: #37A4C2;
+}
+.light-mode .workout-button:focus{
+  background-color: #37A4C2!important;
+}
+.light-mode .workout-button.active{
+  background-color: #37A4C2;
+  border: 1px solid #37A4C2;
+}
+.light-mode .add-workout{
+  background-color: #37A4C2;
+  border:0px;
+}
+.light-mode .add-workout:hover{
+  background-color: #4ab8d6;
+}
+.light-mode .add-workout:focus{
+  background-color: #37A4C2!important;
+}
+.light-mode .add-workout:active{
+  background-color: #37A4C2!important;
+}
+.light-mode .add-workout.active{
+  background-color: #37A4C2;
+}
+.light-mode button{
+  background-color: #37A4C2;
+}
+.light-mode button:hover{
+  background-color: #4ab8d6;
+}
+.light-mode .like{
+  background:none!important;
+  transition: transform 0.5s ease;
+}
+.light-mode .like:hover{
+  color:#4ab8d6!important;
+}
+.light-mode .like:active{
+  transform: translateY(-15px);
 }

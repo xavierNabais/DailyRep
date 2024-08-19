@@ -102,10 +102,12 @@ function HomePage() {
 
 
   useEffect(() => {
-    // Atualize o <body> e <html> para adicionar ou remover a classe dark-mode
     document.body.classList.toggle('dark-mode', darkMode);
     document.documentElement.classList.toggle('dark-mode', darkMode);
+    document.body.classList.toggle('light-mode', !darkMode);
+    document.documentElement.classList.toggle('light-mode', !darkMode);
   }, [darkMode]);
+  
 
   const handleSearch = async () => {
     try {
@@ -279,10 +281,12 @@ function HomePage() {
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
+  
 
   const toggleDarkMode = () => {
     setDarkMode(prevMode => !prevMode);
   };
+  
 
   return (
   <MDBContainer fluid className="my-5">
@@ -319,7 +323,6 @@ function HomePage() {
       {/* Bookings no centro */}
       <MDBCol md="6">
         <div className="d-flex flex-column">
-          <h4 >Workout Feed</h4>
 
           <MDBCard className="mb-4 shadow-sm border-0">
             <MDBCardBody>
@@ -347,9 +350,10 @@ function HomePage() {
                 Missed Workout
               </MDBBtn>
               </div>
-              <MDBBtn color="primary" onClick={handleNewBooking}>Add Workout</MDBBtn>
+              <MDBBtn className='add-workout' onClick={handleNewBooking}>Add Workout</MDBBtn>
               </MDBCardBody>
           </MDBCard>
+          <h4 >Workout Feed</h4>
 
           {bookings.length > 0 ? (
             bookings.map((booking) => (
@@ -363,7 +367,7 @@ function HomePage() {
                       </h5>
                     </div>
                     <MDBBtn
-                      className="btn btn-danger"
+                      className="btn unfollow"
                       onClick={() => handleUnfollow(booking.userId)}
                     >
                       Unfollow
@@ -378,13 +382,14 @@ function HomePage() {
                   <p className="text-muted mb-3">{booking.comment}</p>
                   <div className="d-flex justify-content-between align-items-center mb-2">
                     <MDBBtn
-                      className="btn btn-link"
+                      className="btn btn-link like"
                       onClick={() => handleLike(booking._id)}
-                      style={{ color: booking.userLiked ? '#37a4c2' : 'white', textDecoration: 'none'  }}
+                      style={{ color: booking.userLiked ? '#37a4c2' : 'black', textDecoration: 'none'  }}
                     >
                       <MDBIcon fas icon="heart" className="me-1" />  {booking.likes || 0}
                     </MDBBtn>
                   </div>
+                  <hr></hr>
                   {booking.comments && booking.comments.length > 0 && (
                     <div className="mt-3">
                       {booking.comments.map((comment, index) => (
