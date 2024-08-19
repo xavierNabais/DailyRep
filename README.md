@@ -1,3 +1,4 @@
+This project is still under development // Este projeto está em desenvolvimento
 # 📅 DailyRep
 
 **[English Version](#english-version)** | **[Versão Portuguesa](#versao-portuguesa)**
