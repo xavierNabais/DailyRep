@@ -12,6 +12,7 @@ import AddWorkoutForm from '../components/AddWorkoutForm';
 import BookingList from '../components/BookingList';
 import SearchPeople from '../components/SearchPeople';
 import UserProfile from '../components/UserProfile.js';
+import Menu from '../components/Menu.js';
 
 function HomePage() {
   const [profile, setProfile] = useState(null);
@@ -282,15 +283,13 @@ function HomePage() {
   
 
   return (
-  <MDBContainer fluid className="my-5">
+    <>
+    <Menu userId={profile ? profile._id : ''} /> {/* Passa o userId para o Menu */}
+    <MDBContainer fluid className="my-5">
     <MDBRow>
       {/* Perfil à esquerda */}
       <MDBCol md="3">
-      <div className="text-center">
-        <a href="/" className="d-inline-block">
-          <img src="/logo.png" alt="App Logo" style={{ maxWidth: '40%', height: 'auto' }} />
-        </a>
-      </div>
+
 
         {profile && (
           <UserProfile
@@ -362,6 +361,7 @@ function HomePage() {
         </MDBBtn>
       </div>
   </MDBContainer>
+  </>
 );
 
 }

@@ -1,0 +1,20 @@
+.bg-light {
+    background-color: #f8f9fa !important;
+  }
+  
+  .navbar-brand img {
+    height: 40px; /* Ajusta a altura do logo */
+  }
+  
+  .navbar-nav .nav-link {
+    margin: 0 15px; /* Espaçamento entre os itens do menu */
+  }
+  
+  .avatar-dropdown .dropdown-menu {
+    min-width: 120px; /* Largura mínima do menu dropdown */
+  }
+  
+  .avatar-dropdown .dropdown-toggle::after {
+    display: none; /* Remove a seta do dropdown */
+  }
+  

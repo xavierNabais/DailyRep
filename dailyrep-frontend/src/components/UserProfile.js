@@ -41,7 +41,7 @@ const UserProfile = ({ profile, handleUserClick, handleLogout }) => {
       <MDBCardBody className="text-center mt-5 pt-3">
         {/* Informações do usuário */}
         <h5 className="mb-3">{profile.username}</h5>
-
+          <p>Description of the user</p>
         {/* Seguidores e Seguindo */}
         <div className="mb-3">
           <h6>Following</h6>
@@ -60,12 +60,11 @@ const UserProfile = ({ profile, handleUserClick, handleLogout }) => {
           style={{
             cursor: 'pointer',
             color: '#007bff',
-            textDecoration: 'underline',
             fontSize: '16px',
             fontWeight: 'bold'
           }}
         >
-          View Profile
+          <p className='view-profile'>View Profile</p>
         </div>
 
       </MDBCardBody>

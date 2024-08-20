@@ -74,6 +74,24 @@ a{
   color: #333;
 }
 
+.view-profile{
+  color: #37A4C2;
+}
+
+.view-profile:hover{
+  color:#6fcce6;
+}
+
+.unfollow{
+  background: none!important;
+  border:1px solid #37A4C2!important;
+  color: #37A4C2!important;
+}
+.unfollow:hover{
+  background-color: #37A4C2!important;
+  color:white!important;
+}
+
 /* Margem do contêiner de comentários */
 .comment-container {
   margin-top: 10px;
@@ -270,6 +288,7 @@ body.light-mode{
 .light-mode .like{
   background:none!important;
   transition: transform 0.5s ease;
+  border:0px;
 }
 .light-mode .like:hover{
   color:#4ab8d6!important;

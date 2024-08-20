@@ -3,7 +3,7 @@ import { MDBCard, MDBCardBody, MDBInput, MDBBtn, MDBIcon } from 'mdb-react-ui-ki
 
 const AddWorkoutForm = ({ newBookingComment, setNewBookingComment, newBookingStatus, setNewBookingStatus, handleNewBooking }) => {
   return (
-    <MDBCard className="mb-4 shadow-sm border-0">
+    <MDBCard className="mb-4 shadow-sm" style={{ borderTop: '10px solid #37A4C2' }}>
       <MDBCardBody>
         <h4 className="mb-4">Add DailyRep</h4>
         <MDBInput
