@@ -4,15 +4,14 @@ import {
   MDBContainer,
   MDBRow,
   MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  MDBListGroup,
-  MDBListGroupItem,
   MDBIcon
 } from 'mdb-react-ui-kit';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
+import AddWorkoutForm from '../components/AddWorkoutForm';
+import BookingList from '../components/BookingList';
+import SearchPeople from '../components/SearchPeople';
+import UserProfile from '../components/UserProfile.js';
 
 function HomePage() {
   const [profile, setProfile] = useState(null);
@@ -272,12 +271,6 @@ function HomePage() {
     }
   };
 
-
-  const handleLogout = () => {
-    localStorage.removeItem('token'); // Clear the token from local storage
-    navigate('/login'); // Redirect to the login page
-  };
-
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
@@ -298,194 +291,59 @@ function HomePage() {
           <img src="/logo.png" alt="App Logo" style={{ maxWidth: '40%', height: 'auto' }} />
         </a>
       </div>
-      <MDBCard className="mb-4 shadow-sm" style={{ border: '0px' }}>
-        <MDBCardBody className="text-center">
 
-            <MDBListGroup flush className="mt-3">
-              <MDBListGroupItem className="list-item-spacing d-flex align-items-center" onClick={() => handleUserClick(profile._id)}>
-                <MDBIcon fas icon="user" className="me-2" /> 
-                <span>Profile</span>
-              </MDBListGroupItem>
-              <MDBListGroupItem className="list-item-spacing d-flex align-items-center">
-                <MDBIcon fas icon="users" className="me-2" /> 
-                <span>Followers</span>
-              </MDBListGroupItem>
-              <MDBListGroupItem className="list-item-spacing d-flex align-items-center">
-                <MDBIcon fas icon="user-friends" className="me-2" /> 
-                <span>Following</span>
-              </MDBListGroupItem>
-            </MDBListGroup>
-            <MDBBtn color="danger" className="mt-3" onClick={handleLogout}>Logout</MDBBtn>
-          </MDBCardBody>
-        </MDBCard>
+        {profile && (
+          <UserProfile
+            profile={profile}
+            handleUserClick={handleUserClick}
+          />
+        )}
+
+
+
       </MDBCol>
 
       {/* Bookings no centro */}
       <MDBCol md="6">
         <div className="d-flex flex-column">
 
-          <MDBCard className="mb-4 shadow-sm border-0">
-            <MDBCardBody>
-              <h4 className="mb-4">Add DailyRep</h4>
-              <MDBInput
-                type="text"
-                placeholder="Adicione um comentário"
-                value={newBookingComment}
-                onChange={(e) => setNewBookingComment(e.target.value)}
-                className="mb-3"
-              />
-              <div className="d-flex justify-content-between mb-3">
-              <MDBBtn
-                className={`flex-fill me-2 workout-button done ${newBookingStatus === 1 ? 'active' : ''}`}
-                onClick={() => setNewBookingStatus(1)}
-              >
-                <MDBIcon fas icon="check-circle" className="me-2" />
-                Workout Done
-              </MDBBtn>
-              <MDBBtn
-                className={`flex-fill workout-button missed ${newBookingStatus === 0 ? 'active' : ''}`}
-                onClick={() => setNewBookingStatus(0)}
-              >
-                <MDBIcon fas icon="times-circle" className="me-2" />
-                Missed Workout
-              </MDBBtn>
-              </div>
-              <MDBBtn className='add-workout' onClick={handleNewBooking}>Add Workout</MDBBtn>
-              </MDBCardBody>
-          </MDBCard>
-          <h4 >Workout Feed</h4>
 
-          {bookings.length > 0 ? (
-            bookings.map((booking) => (
-              <MDBCard key={booking._id} className="mb-3 shadow-sm border-0">
-                <MDBCardBody className="d-flex flex-column">
-                  <div className="d-flex justify-content-between align-items-center mb-2">
-                    <div className="d-flex align-items-center">
-                      <MDBIcon fas icon="user" size="2x" className="me-2" />
-                      <h5 className="mb-0" style={{ cursor: 'pointer' }} onClick={() => handleUserClick(booking.userId)}>
-                        {booking.userUsername}
-                      </h5>
-                    </div>
-                    <MDBBtn
-                      className="btn unfollow"
-                      onClick={() => handleUnfollow(booking.userId)}
-                    >
-                      Unfollow
-                    </MDBBtn>
-                  </div>
-                  <p className="text-muted mb-2">
-                    <strong>{booking.status === 1 ? 'Done' : 'Missed'}</strong>
-                  </p>
-                  <p className="text-muted mb-2">
-                    {new Date(booking.date).toLocaleDateString()}
-                  </p>
-                  <p className="text-muted mb-3">{booking.comment}</p>
-                  <div className="d-flex justify-content-between align-items-center mb-2">
-                    <MDBBtn
-                      className="btn btn-link like"
-                      onClick={() => handleLike(booking._id)}
-                      style={{ color: booking.userLiked ? '#37a4c2' : 'black', textDecoration: 'none'  }}
-                    >
-                      <MDBIcon fas icon="heart" className="me-1" />  {booking.likes || 0}
-                    </MDBBtn>
-                  </div>
-                  <hr></hr>
-                  {booking.comments && booking.comments.length > 0 && (
-                    <div className="mt-3">
-                      {booking.comments.map((comment, index) => (
-                        <div key={index} className="d-flex align-items-start mb-3">
-                          {/* Avatar */}
-                          <div className="me-2">
-                            <MDBIcon fas icon="user-circle" size="lg" />
-                          </div>
-                          {/* Comment Details */}
-                          <div>
-                          <div className="d-flex justify-content-between align-items-center mb-1">
-                            <span className="comment-username">{comment.userUsername}</span>
-                            <small className="text-muted" style={{ marginLeft: '10px' }}>{new Date(comment.createdAt).toLocaleDateString()}</small> {/* Ajuste o valor conforme necessário */}
-                            {profile._id === comment.userId && (
-                              <MDBIcon
-                                fas
-                                icon="trash"
-                                size="lg"
-                                className="ms-2 trash"
-                                style={{ position: 'absolute', right: 0, cursor: 'pointer'}}
-                                onClick={() => handleDeleteComment(comment._id, booking._id, comment.userId)}
-                              />
-                            )}
-                          </div>
-                            <p className="mb-0">{comment.comment}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  <div className="mt-3">
-                    <MDBInput
-                      type="text"
-                      placeholder="Add a comment"
-                      value={newBookingComment}
-                      onChange={(e) => setNewBookingComment(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' && newBookingComment.trim() !== '') {
-                          handleComment(booking._id, newBookingComment);
-                          setNewBookingComment(''); // Clear input field
-                        }
-                      }}
-                      size="sm"
-                    />
-                    <MDBBtn className="btn btn-primary mt-2" onClick={() => handleComment(booking._id, newBookingComment)}>
-                      Reply
-                    </MDBBtn>
-                  </div>
-                </MDBCardBody>
-              </MDBCard>
-            ))
-          ) : (
-            <p>No bookings found.</p>
-          )}
+        <AddWorkoutForm 
+          newBookingComment={newBookingComment}
+          setNewBookingComment={setNewBookingComment}
+          newBookingStatus={newBookingStatus}
+          setNewBookingStatus={setNewBookingStatus}
+          handleNewBooking={handleNewBooking}
+        />
+
+
+
+          <BookingList 
+            bookings={bookings} 
+            handleUserClick={handleUserClick} 
+            handleUnfollow={handleUnfollow} 
+            handleLike={handleLike} 
+            handleComment={handleComment}
+            newBookingComment={newBookingComment}
+            setNewBookingComment={setNewBookingComment}
+            handleDeleteComment={handleDeleteComment}
+            profile={profile}
+          />
+
         </div>
       </MDBCol>
 
       <MDBCol md="3">
-        <MDBCard className="mb-4 shadow-sm border-0">
-          <MDBCardBody>
-            <div className="d-flex justify-content-between align-items-center mb-4">
-              <h5 >Search people</h5>
-            </div>
-            <MDBInput
-              label="Buscar..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              size="sm"
-            />
-            <MDBBtn className="mt-3" onClick={handleSearch} size="sm">Search</MDBBtn>
-          </MDBCardBody>
-        </MDBCard>
-        <MDBCard className="mt-4">
-              <MDBCardBody>
-                <h5 className="mb-4">Follow more people</h5>
-                {recommendedUsers.length > 0 ? (
-                  <MDBListGroup>
-                    {recommendedUsers.map(user => (
-                      <MDBListGroupItem key={user._id} className="d-flex justify-content-between align-items-center">
-                          <span style={{ cursor: 'pointer' }} onClick={() => handleUserClick(user._id)}>
-                            {user.username}
-                          </span>
-                        <MDBBtn
-                          color="primary"
-                          onClick={() => handleFollow(user._id)}
-                        >
-                          Follow
-                        </MDBBtn>
-                      </MDBListGroupItem>
-                    ))}
-                  </MDBListGroup>
-                ) : (
-                  <p>No users found.</p>
-                )}
-              </MDBCardBody>
-            </MDBCard>
+
+      <SearchPeople
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        handleSearch={handleSearch}
+        recommendedUsers={recommendedUsers}
+        handleUserClick={handleUserClick}
+        handleFollow={handleFollow}
+      />
+
       </MDBCol>
     </MDBRow>
 

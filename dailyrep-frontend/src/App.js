@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import HomePage from './components/HomePage';
+import Home from './pages/Home';
+import HomePage from './pages/Home';
 import ProfilePage from './components/ProfilePage';
 import ProtectedRoute from './components/ProtectedRoute.js';
 import NotFoundRedirect from './components/NotFoundRedirect';
@@ -16,6 +17,14 @@ function App() {
           element={
             <ProtectedRoute>
               <HomePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
             </ProtectedRoute>
           }
         />
