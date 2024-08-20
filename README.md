@@ -3,7 +3,7 @@ This project is still under development // Este projeto está em desenvolvimento
 
 **[English Version](#english-version)** | **[Versão Portuguesa](#versao-portuguesa)**
 
-![Logo](https://via.placeholder.com/150)
+![Logo](https://github.com/xavierNabais/DailyRep/blob/master/dailyrep-frontend/public/logo.png)
 
 ---
 
