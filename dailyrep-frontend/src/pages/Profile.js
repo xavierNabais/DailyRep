@@ -13,6 +13,9 @@ import {
 } from 'mdb-react-ui-kit';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import Menu from '../components/Menu';
+import UserProfile from '../components/UserProfile';
+import BookingList from '../components/BookingList';
 
 function ProfilePage() {
   const [profile, setProfile] = useState(null); // Perfil do usuário sendo visualizado
@@ -271,42 +274,26 @@ function ProfilePage() {
 
 
   return (
+
+    <>
+        <Menu userId={profile ? profile._id : ''} /> {/* Passa o userId para o Menu */}
+
+        
     <MDBContainer fluid className="my-5">
       <MDBRow>
         {/* Perfil à esquerda */}
         <MDBCol md="3">
-          <div className="text-center">
-            <a href="/" className="d-inline-block">
-              <img src="/logo.png" alt="App Logo" style={{ maxWidth: '40%', height: 'auto' }} />
-            </a>
-          </div>
-          <MDBCard className="mb-4 shadow-sm">
-            <MDBCardBody className="text-center">
-              <MDBIcon fas icon="user-circle" size="3x" className="my-3" />
-              <h5 className="mb-1">{loggedInUserProfile?.username}</h5>
-              <MDBBtn color="danger" className="mt-3" onClick={handleLogout}>Logout</MDBBtn>
-              <MDBListGroup flush className="mt-3">
-                <MDBListGroupItem className="list-item-spacing d-flex align-items-center" onClick={() => handleUserClick(loggedInUserProfile?._id)}>
-                  <MDBIcon fas icon="user" className="me-2" /> 
-                  <span>Profile</span>
-                </MDBListGroupItem>
-                <MDBListGroupItem className="list-item-spacing d-flex align-items-center">
-                  <MDBIcon fas icon="users" className="me-2" /> 
-                  <span>Followers</span>
-                </MDBListGroupItem>
-                <MDBListGroupItem className="list-item-spacing d-flex align-items-center">
-                  <MDBIcon fas icon="user-friends" className="me-2" /> 
-                  <span>Following</span>
-                </MDBListGroupItem>
-              </MDBListGroup>
-            </MDBCardBody>
-          </MDBCard>
+        {profile && (
+          <UserProfile
+            profile={profile}
+            handleUserClick={handleUserClick}
+          />
+        )}
         </MDBCol>
 
         {/* Centro: Workouts e Busca */}
         <MDBCol md="6">
           <div className="d-flex flex-column">
-            <h4 className="mb-4">Workout Feed</h4>
 
             <MDBCard className="mb-4 shadow-sm border-0">
               <MDBCardBody>
@@ -322,107 +309,155 @@ function ProfilePage() {
                 )}
               </MDBCardBody>
             </MDBCard>
+            <h4 className="mb-4">Workout Feed</h4>
 
             {bookings.length > 0 ? (
-              bookings.map((booking) => (
-                <MDBCard key={booking._id} className="mb-3 shadow-sm border-0">
-                  <MDBCardBody className="d-flex flex-column">
-                    <div className="d-flex justify-content-between align-items-center mb-2">
-                      <div className="d-flex align-items-center">
-                        <MDBIcon fas icon="user" size="2x" className="me-2" />
-                        <h5 className="mb-0">{booking.userUsername}</h5>
-                      </div>
-                      {loggedInUserProfile?._id === booking.userId && ( // Verifica se o post é do usuário logado
-                        <MDBBtn
-                          className="btn btn-danger"
-                          onClick={() => handleDeleteBooking(booking._id)}
-                        >
-                          Delete
-                        </MDBBtn>
-                      )}
-                      {loggedInUserProfile?._id !== booking.userId && (
-                        <MDBBtn
-                          className="btn btn-danger"
-                          onClick={() => handleUnfollow(booking.userId)}
-                        >
-                          Unfollow
-                        </MDBBtn>
-                      )}
-                    </div>
-                    <p className="text-muted mb-2">
-                      <strong>{booking.status === 1 ? 'Done' : 'Missed'}</strong>
-                    </p>
-                    <p className="text-muted mb-2">
-                      {new Date(booking.date).toLocaleDateString()}
-                    </p>
-                    <p className="text-muted mb-3">{booking.comment}</p>
-                    <div className="d-flex justify-content-between align-items-center mb-2">
-                    <MDBBtn
-                      className="btn btn-link like"
-                      onClick={() => handleLike(booking._id)}
-                      style={{ 
-                        color: booking.userLiked ? '#37a4c2' : 'black', 
-                        textDecoration: 'none'
-                      }}
-                    >
-                      <MDBIcon fas icon="heart" className="me-1" /> {booking.likes || 0}
-                    </MDBBtn>
-                    </div>
-                    <hr></hr>
-                    {booking.comments && booking.comments.length > 0 && (
-                      <div className="mt-3">
-                        {booking.comments.map((comment, index) => (
-                          <div key={index} className="d-flex align-items-start mb-3">
-                            {/* Avatar */}
-                            <div className="me-2">
-                              <MDBIcon fas icon="user-circle" size="lg" />
-                            </div>
-                            {/* Comment Details */}
-                            <div>
-                              <div className="d-flex justify-content-between align-items-center mb-1">
-                                <span className="comment-username">{comment.userUsername}</span>
-                                <small className="text-muted" style={{ marginLeft: '10px' }}>{new Date(comment.createdAt).toLocaleDateString()}</small>
-                                {loggedInUserProfile._id === comment.userId && (
-                                  <MDBIcon
-                                    fas
-                                    icon="trash"
-                                    size="lg"
-                                    className="trash ms-2"
-                                    style={{ position: 'absolute', right: 0, cursor: 'pointer' }}
-                                    onClick={() => handleDeleteComment(comment._id, booking._id, comment.userId)}
-                                  />
-                                )}
-                              </div>
-                              <p className="mb-0">{comment.comment}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    <div className="mt-3">
-                      <MDBInput
-                        type="text"
-                        placeholder="Add a comment"
-                        value={newBookingComment}
-                        onChange={(e) => setNewBookingComment(e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' && newBookingComment.trim() !== '') {
-                            handleComment(booking._id, newBookingComment);
-                            setNewBookingComment(''); // Clear input field
-                          }
+        bookings.map((booking) => (
+          <MDBCard key={booking._id} className="mb-4 shadow-sm border-0 rounded-3">
+            <MDBCardBody className="d-flex flex-column p-4">
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <div className="d-flex align-items-center">
+                  {/* Avatar */}
+                  <img
+                    src="/avatar.jpg" // Substitua pelo caminho correto do avatar
+                    alt="User Avatar"
+                    style={{
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                      marginRight: '12px'
+                    }}
+                  />
+                  <h5
+                    className="mb-0 text-dark"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => handleUserClick(booking.userId)}
+                  >
+                    {booking.userUsername}
+                  </h5>
+                </div>
+                {profile._id === booking.userId ? (
+                  <MDBBtn
+                    className="btn btn-danger"
+                    onClick={() => handleDeleteBooking(booking._id)}
+                  >
+                    Delete
+                  </MDBBtn>
+                ) : (
+                  <MDBBtn
+                    className="btn unfollow"
+                    onClick={() => handleUnfollow(booking.userId)}
+                  >
+                    Unfollow
+                  </MDBBtn>
+                )}
+              </div>
+              <p className="text-muted mb-2">
+                <strong>{booking.status === 1 ? 'Done' : 'Missed'}</strong>
+              </p>
+              <p className="text-muted mb-2">
+                {new Date(booking.date).toLocaleDateString()}
+              </p>
+              <p className="text-muted mb-3">{booking.comment}</p>
+              <div className="d-flex align-items-center mb-3" style={{ marginLeft: '5px' }}>
+                <MDBBtn
+                  className="btn like d-flex flex-column align-items-center"
+                  onClick={() => handleLike(booking._id)}
+                  style={{
+                    color: booking.userLiked ? '#37a4c2' : 'black',
+                    textDecoration: 'none',
+                    padding: '0',
+                    background: 'none'
+                  }}
+                >
+                  <MDBIcon fas icon="heart" className="me-1" style={{ fontSize: '18px' }} />
+                  <span>{booking.likes || 0}</span>
+                </MDBBtn>
+                <MDBBtn
+                  className="btn like comment d-flex flex-column align-items-center ms-3"
+                  style={{
+                    color: 'black',
+                    textDecoration: 'none',
+                    padding: '0',
+                    background: 'none'
+                  }}
+                >
+                  <MDBIcon fas icon="comment" className="me-1" style={{ fontSize: '18px' }} />
+                  <span>{booking.comments ? booking.comments.length : 0}</span>
+                </MDBBtn>
+              </div>
+
+              <hr />
+              {booking.comments && booking.comments.length > 0 && (
+                <div className="mt-3">
+                  {booking.comments.map((comment, index) => (
+                    <div key={index} className="d-flex align-items-start mb-3 position-relative">
+                      {/* Avatar */}
+                      <img
+                        src="/avatar.jpg" // Substitua pelo caminho correto do avatar
+                        alt="Comment Avatar"
+                        style={{
+                          width: '30px',
+                          height: '30px',
+                          borderRadius: '50%',
+                          objectFit: 'cover',
+                          marginRight: '10px'
                         }}
-                        size="sm"
                       />
-                      <MDBBtn className="btn btn-primary mt-2" onClick={() => handleComment(booking._id, newBookingComment)}>
-                        Reply
-                      </MDBBtn>
+                      {/* Comment Details */}
+                      <div>
+                        <div className="d-flex justify-content-between align-items-center mb-1">
+                          <span className="fw-bold text-dark">{comment.userUsername}</span>
+                          <small className="text-muted">
+                            {new Date(comment.createdAt).toLocaleDateString()}
+                          </small>
+                          {profile._id === comment.userId && (
+                            <MDBIcon
+                              fas
+                              icon="trash"
+                              size="lg"
+                              className="ms-2 text-danger position-absolute end-0"
+                              style={{ cursor: 'pointer' }}
+                              onClick={() =>
+                                handleDeleteComment(comment._id, booking._id, comment.userId)
+                              }
+                            />
+                          )}
+                        </div>
+                        <p className="mb-0">{comment.comment}</p>
+                      </div>
                     </div>
-                  </MDBCardBody>
-                </MDBCard>
-              ))
-            ) : (
-              <p>No bookings found.</p>
-            )}
+                  ))}
+                </div>
+              )}
+              <div className="mt-3">
+                <MDBInput
+                  type="text"
+                  placeholder="Add a comment"
+                  value={newBookingComment}
+                  onChange={(e) => setNewBookingComment(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && newBookingComment.trim() !== '') {
+                      handleComment(booking._id, newBookingComment);
+                      setNewBookingComment(''); // Clear input field
+                    }
+                  }}
+                  size="sm"
+                />
+                <MDBBtn
+                  className="btn btn-primary mt-2"
+                  onClick={() => handleComment(booking._id, newBookingComment)}
+                >
+                  Reply
+                </MDBBtn>
+              </div>
+            </MDBCardBody>
+          </MDBCard>
+        ))
+      ) : (
+        <p>No bookings found.</p>
+      )}
           </div>
         </MDBCol>
 
@@ -483,6 +518,7 @@ function ProfilePage() {
         </MDBBtn>
       </div>
     </MDBContainer>
+    </>
   );
 }
 
